@@ -4,4 +4,4 @@ Tým:
 KamilKrivanek,
 PetrCrha,
 PabloEmilioEscobarGaviria128482,
-jafaktnevimnicmenenapada,
+jafaktnevimnicmenenapada
