@@ -15,7 +15,7 @@ jafaktnevimnicmenenapada - Jan Mitašík
 
 **Pong** -- Pro hru Pong jsou potřeba 2 hráčí, hra se ovláda 1. hráč W, S a pro hráče č. 2 horní a dolší šipky. Ukol hráče je: při startu hry se rohoní míček a vy ho musíte odrazit k druhému hračí zpět pálkou, kterou budete ovládat. Pokud se stane, že míček váš protivník nechytí tak máte +1 bod.
 
-Funkce Hry: 
+**Funkce Hry:** 
 - Funkce hry bude taková, když se někdo bude nudit a bude mít chuť si zahrát nějakou hru co bude v našem výberu. Proto jsme udělali aplikaci jménem Multigame.
   Naše aplikace Multigame, obsahuje 2 hry, Jedna z nich je Tetris a druhá je Pong. Jak to bude fungovat?.. Hele, úplně jednoduše, otevřeš aplikaci a můžeš rovnou
   vybrat svojí hru kterou si budeš chtít zahrát, no a když tě hra přestane bavit tak jí můžeš vypnout.
