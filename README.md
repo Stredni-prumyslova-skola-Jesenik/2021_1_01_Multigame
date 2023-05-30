@@ -1,7 +1,7 @@
 # 2021_1_01_Multigame
-# team project
+# Team Project
 # Tým:
-KamilKrivanek - Kamil Křivánek,
+> KamilKrivanek - Kamil Křivánek,
 PetrCrha - Petr Crha,
 PabloEmilioEscobarGaviria128482 - Daniel Bakeš,
 jafaktnevimnicmenenapada - Jan Mitašík
