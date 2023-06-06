@@ -1,4 +1,4 @@
-#Jedná se o hru Tetris (tvůrci: Daniel Bakeš, Jan Mitašík, Petr Crha, Kamil křivánek)
+#Jedná se o hru Tetris (tvůrci: Daniel Bakeš, Jan Mitašík, Petr Crha, Kamil křivánek, Kuba Leskovjan)
 
 #importování funkcí pygame a random
 import pygame
