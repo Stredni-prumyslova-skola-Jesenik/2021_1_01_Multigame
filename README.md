@@ -5,7 +5,7 @@
 PetrCrha - Petr Crha,
 PabloEmilioEscobarGaviria128482 - Daniel Bakeš,
 jafaktnevimnicmenenapada - Jan Mitašík,
-KubaKubicek - Jakub Leskovjan
+KubaKubiceek - Jakub Leskovjan
 # Pravidla her:
 
 **Menu** -- Při otevření aplikace se otevře menu, kde bude na výběr her(Tetris, Pong) a potom tlačítko ukončení aplikace.
