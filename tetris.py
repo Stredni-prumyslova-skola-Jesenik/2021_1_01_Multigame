@@ -1,7 +1,10 @@
+#Jedná se o hru Tetris (tvůrci: Daniel Bakeš, Jan Mitašík, Petr Crha, Kamil křivánek)
+
+#importování funkcí pygame a random
 import pygame
 import random
 
-#def barev
+#určení barev
 colors = [
     (0, 0, 0),
     (120, 37, 179),
@@ -12,11 +15,11 @@ colors = [
     (180, 34, 122),
 ]
 
-
+#class postavy
 class Figure:
     x = 0
     y = 0
-
+#postava
     figures = [
         [[1, 5, 9, 13], [4, 5, 6, 7]],
         [[4, 5, 9, 10], [2, 6, 5, 9]],
@@ -34,14 +37,16 @@ class Figure:
         self.color = random.randint(1, len(colors) - 1)
         self.rotation = 0
 
+        #obrazek
     def image(self):
         return self.figures[self.type][self.rotation]
-
+#otáčení
     def rotate(self):
         self.rotation = (self.rotation + 1) % len(self.figures[self.type])
 
-
+#určení tetrisu
 class Tetris:
+    #definice výšky a šířky.. x a y... + level
     def __init__(self, height, width):
         self.level = 2
         self.score = 0
@@ -59,6 +64,7 @@ class Tetris:
         self.field = []
         self.score = 0
         self.state = "start"
+        #určení nove lajny
         for i in range(height):
             new_line = []
             for j in range(width):
@@ -67,7 +73,7 @@ class Tetris:
 
     def new_figure(self):
         self.figure = Figure(3, 0)
-
+#protnutí
     def intersects(self):
         intersection = False
         for i in range(4):
@@ -79,7 +85,7 @@ class Tetris:
                             self.field[i + self.figure.y][j + self.figure.x] > 0:
                         intersection = True
         return intersection
-
+#zalomení lajny/čáry
     def break_lines(self):
         lines = 0
         for i in range(1, self.height):
@@ -93,19 +99,19 @@ class Tetris:
                     for j in range(self.width):
                         self.field[i1][j] = self.field[i1 - 1][j]
         self.score += lines ** 2
-
+#space
     def go_space(self):
         while not self.intersects():
             self.figure.y += 1
         self.figure.y -= 1
         self.freeze()
-
+#dolu
     def go_down(self):
         self.figure.y += 1
         if self.intersects():
             self.figure.y -= 1
             self.freeze()
-
+#stop/zamrznutí
     def freeze(self):
         for i in range(4):
             for j in range(4):
@@ -115,13 +121,13 @@ class Tetris:
         self.new_figure()
         if self.intersects():
             self.state = "gameover"
-
+#na bok
     def go_side(self, dx):
         old_x = self.figure.x
         self.figure.x += dx
         if self.intersects():
             self.figure.x = old_x
-
+#otočení
     def rotate(self):
         old_rotation = self.figure.rotation
         self.figure.rotate()
@@ -149,7 +155,7 @@ fps = 25
 game = Tetris(20, 10)
 counter = 0
 
-pressing_down = False
+pressing_down = False #určuje zda e klavesnice na pohyb zaplá/vyplá
 
 while not done:
     if game.figure is None:
@@ -161,7 +167,7 @@ while not done:
     if counter % (fps // game.level // 2) == 0 or pressing_down:
         if game.state == "start":
             game.go_down()
-
+#určení klaves
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -185,6 +191,7 @@ while not done:
 
     screen.fill(WHITE)
 
+    #výška/šířka
     for i in range(game.height):
         for j in range(game.width):
             pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
@@ -208,6 +215,7 @@ while not done:
     text_game_over = font1.render("Game Over", True, (255, 125, 0))
     text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
 
+    #prohra hry
     screen.blit(text, [0, 0])
     if game.state == "gameover":
         screen.blit(text_game_over, [20, 200])
