@@ -1,10 +1,16 @@
-#Jedná se o hru Tetris (tvůrci: Daniel Bakeš, Jan Mitašík, Petr Crha, Kamil křivánek, Kuba Leskovjan)
+#Jedná se o hru Tetris 
+
+#Autoři: Daniel Bakeš, Jan Mitašík, Petr Crha, Kamil křivánek, Kuba Leskovjan
+
+#Verze: 1.0.0
+
+#Date: 06.06.2023
 
 #importování funkcí pygame a random
 import pygame
 import random
 
-#určení barev
+#Určení barev
 colors = [
     (0, 0, 0),
     (120, 37, 179),
@@ -15,11 +21,11 @@ colors = [
     (180, 34, 122),
 ]
 
-#class postavy
+#Class postavy
 class Figure:
     x = 0
     y = 0
-#postava
+#Postava
     figures = [
         [[1, 5, 9, 13], [4, 5, 6, 7]],
         [[4, 5, 9, 10], [2, 6, 5, 9]],
@@ -37,14 +43,14 @@ class Figure:
         self.color = random.randint(1, len(colors) - 1)
         self.rotation = 0
 
-        #obrazek
+#Obrazek
     def image(self):
         return self.figures[self.type][self.rotation]
-#otáčení
+#Otáčení postavy
     def rotate(self):
         self.rotation = (self.rotation + 1) % len(self.figures[self.type])
 
-#určení tetrisu
+#Určení tetrisu
 class Tetris:
     #definice výšky a šířky.. x a y... + level
     def __init__(self, height, width):
@@ -73,7 +79,7 @@ class Tetris:
 
     def new_figure(self):
         self.figure = Figure(3, 0)
-#protnutí
+#Protnutí postav
     def intersects(self):
         intersection = False
         for i in range(4):
@@ -85,7 +91,7 @@ class Tetris:
                             self.field[i + self.figure.y][j + self.figure.x] > 0:
                         intersection = True
         return intersection
-#zalomení lajny/čáry
+#Zalomení lajny/čáry
     def break_lines(self):
         lines = 0
         for i in range(1, self.height):
@@ -105,13 +111,13 @@ class Tetris:
             self.figure.y += 1
         self.figure.y -= 1
         self.freeze()
-#dolu
+#Pohyb postavy dolů
     def go_down(self):
         self.figure.y += 1
         if self.intersects():
             self.figure.y -= 1
             self.freeze()
-#stop/zamrznutí
+#Stop/zamrznutí postavy
     def freeze(self):
         for i in range(4):
             for j in range(4):
@@ -121,13 +127,13 @@ class Tetris:
         self.new_figure()
         if self.intersects():
             self.state = "gameover"
-#na bok
+#Pohyb postavy do strany
     def go_side(self, dx):
         old_x = self.figure.x
         self.figure.x += dx
         if self.intersects():
             self.figure.x = old_x
-#otočení
+#Otáčení postavy
     def rotate(self):
         old_rotation = self.figure.rotation
         self.figure.rotate()
@@ -135,10 +141,10 @@ class Tetris:
             self.figure.rotation = old_rotation
 
 
-# Inicializuje herní engine
+#Inicializuje herní engine
 pygame.init()
 
-# Definujte některé barvy
+#Definujte některé barvy
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
@@ -148,14 +154,14 @@ screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Tetris")
 
-# Opakuje, dokud uživatel neklikne na tlačítko Zavřít.
+#Opakuje, dokud uživatel neklikne na tlačítko Zavřít
 done = False
 clock = pygame.time.Clock()
 fps = 25
 game = Tetris(20, 10)
 counter = 0
 
-pressing_down = False #určuje zda e klavesnice na pohyb zaplá/vyplá
+pressing_down = False #Určuje zda je klávesa pro pohyb zaplá/vyplá
 
 while not done:
     if game.figure is None:
@@ -167,7 +173,7 @@ while not done:
     if counter % (fps // game.level // 2) == 0 or pressing_down:
         if game.state == "start":
             game.go_down()
-#určení klaves
+#Přiřazení kláves pro ovládání hry
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
@@ -191,7 +197,7 @@ while not done:
 
     screen.fill(WHITE)
 
-    #výška/šířka
+    #Výška/šířka obrazovky
     for i in range(game.height):
         for j in range(game.width):
             pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
@@ -215,7 +221,7 @@ while not done:
     text_game_over = font1.render("Game Over", True, (255, 125, 0))
     text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
 
-    #prohra hry
+    #Konec hry
     screen.blit(text, [0, 0])
     if game.state == "gameover":
         screen.blit(text_game_over, [20, 200])
