@@ -1,0 +1,10 @@
+Pro 100% chod aplikace je potřeba aby se nainstalovala funkce pyglet do pythonu.
+Podle následujícího postupu:
+
+1. otevřeme si python.exe
+2. aktualizace pyglet: pip install --upgrade --user pyglet
+3. install pyglet příkaz: python setup.py install --user     (po nainstalování aktualizujeme pyglet dle kroku 2)
+
+
+pokud by se stalo, že by to stále nešlo nainstalujeme z githubu.
+příkaz: pip install --upgrade --user https://github.com/pyglet/pyglet/archive/master.zip
