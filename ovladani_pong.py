@@ -1,1 +1,0 @@
-#Pong -- Pro hru Pong jsou potřeba 2 hráčí, hra se ovláda 1. hráč W, S a pro hráče č. 2 horní a dolní šipky. Ukol hráče je: při startu hry se rohoní míček a vy ho musíte odrazit k druhému hračí zpět pálkou, kterou budete ovládat. Pokud se stane, že míček váš protivník nechytí tak máte +1 bod.
